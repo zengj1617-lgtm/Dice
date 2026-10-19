@@ -1,10 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Dice Game</title>
+    <script src="processing.js"></script>
+</head>
+<body>
+<h1>Lucky Dice Game</h1>
+<p>Click the dice to roll again!</p>
+
+<canvas id="game"></canvas>
+
+<script type="application/processing" data-processing-target="game">
 void setup() {
     size(360, 400);
     noLoop();
 }
 
 void draw() {
-    background(220); //cover the text//
+    background(220);
     int total = 0;
     for (int y = 0; y < 3; y++) {
         for (int x = 0; x < 3; x++) {
@@ -15,7 +28,7 @@ void draw() {
     }
     fill(0);
     textSize(25);
-    text("Total: " + total, 130, 375); 
+    text("Total: " + total, 130, 375);
 }
 
 void mousePressed() {
@@ -48,3 +61,9 @@ class Die {
                     ellipse(x + 42 + c * 24, y + 42 + r * 24, 12, 12);
     }
 }
+</script>
+
+<footer>Created by Me - 2026</footer>
+</body>
+</html>
+
