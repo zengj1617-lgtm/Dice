@@ -1,29 +1,50 @@
-void setup()
-{
-	noLoop();
+void setup() {
+    size(360, 400);
+    noLoop();
 }
-void draw()
-{
-	//your code here
+
+void draw() {
+    background(220);
+    int total = 0;
+    for (int y = 0; y < 3; y++) {
+        for (int x = 0; x < 3; x++) {
+            Die d = new Die(30 + x * 105, 30 + y * 105);
+            d.show();
+            total += d.n;
+        }
+    }
+    fill(0);
+    textSize(25);
+    text("Total: " + total, 130, 375);
 }
-void mousePressed()
-{
-	redraw();
+
+void mousePressed() {
+    redraw();
 }
-class Die //models one single dice cube
-{
-	//variable declarations here
-	
-	Die(int x, int y) //constructor
-	{
-		//variable initializations here
-	}
-	void roll()
-	{
-		//your code here
-	}
-	void show()
-	{
-		//your code here
-	}
+
+class Die {
+    int x, y, n;
+
+    Die(int a, int b) {
+        x = a;
+        y = b;
+        roll();
+    }
+
+    void roll() {
+        n = (int)(Math.random() * 6) + 1;
+    }
+
+    void show() {
+        fill(255);
+        rect(x, y, 85, 85, 10);
+        fill(0);
+        for (int r = -1; r <= 1; r++)
+            for (int c = -1; c <= 1; c++)
+                if ((n % 2 == 1 && r == 0 && c == 0) ||
+                    (n >= 2 && r == c && r != 0) ||
+                    (n >= 4 && r == -c && r != 0) ||
+                    (n == 6 && r == 0 && c != 0))
+                    ellipse(x + 42 + c * 24, y + 42 + r * 24, 12, 12);
+    }
 }
